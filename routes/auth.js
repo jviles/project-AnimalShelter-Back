@@ -54,7 +54,6 @@ router.post('/signup', (req, res, next) => {
 
     const newUser = User({
       username,
-      email,
       password: hashPass
     });
 
@@ -77,7 +76,7 @@ router.post('/logout', (req, res) => {
   return response.ok(req, res);
 });
 
-router.get('/me', (req, res) => {
+router.get('/profile', (req, res) => {
   if (req.isAuthenticated()) {
     let user = req.user;
     return response.data(req, res, user.asData());
