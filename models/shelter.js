@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const ShelterSchema = new Schema({
-  sheltersname: {
+  name: {
     type: String,
     required: [true, 'name is required']
   },
@@ -10,16 +10,12 @@ const ShelterSchema = new Schema({
     type: String,
     required: [true, 'direction is required']
   },
-  number: Number,
-  zipcode: Number,
-  user: [
-    {
-      userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'user'
-      },
-    }
-  ]
+  number: String,
+  zipcode: String,
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'user'
+  }
 });
 
 module.exports = mongoose.model('Shelter', ShelterSchema);

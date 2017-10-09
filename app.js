@@ -17,7 +17,7 @@ const auth = require('./routes/auth');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/app-todo-db');
+mongoose.connect('mongodb://localhost/shelters');
 
 app.use(session({
     secret: 'todo-app',
@@ -54,8 +54,8 @@ app.use(function(req, res, next) {
 
 // error handlers
 app.use(function(err, req, res, next) {
-    console.log(req.method, req.path, err);
-    if (!headers.sent) {
+    console.log('ERROR', req.method, req.path, err);
+    if (!res.headerSent) {
         res.status(500).json({error: 'Unexpected error'});
     }
 });
