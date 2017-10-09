@@ -11,8 +11,8 @@ const passport = require('passport');
 
 const response = require('./helpers/response');
 const configure = require('./config/passport');
-const animals = require('./routes/animals');
-const shelters = require ('./routes/shelters');
+const animal = require('./routes/animal');
+const shelter = require ('./routes/shelter');
 const auth = require('./routes/auth');
 
 const app = express();
@@ -43,8 +43,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
-app.use('/animals', animals);
-app.use('/shelters',shelters);
+app.use('/animal', animal);
+app.use('/shelter',shelter);
 app.use('/auth', auth);
 
 // catch 404 and forwarding to error handler
