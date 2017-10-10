@@ -33,6 +33,7 @@ router.get('/by-shelter/:id', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
+  console.log ("post1");
   const newAnimal = new Animal({
     name: req.body.name,
     image: req.body.image,
@@ -41,10 +42,11 @@ router.post('/', (req, res, next) => {
     color: req.body.color,
     sex: req.body.sex,
     breed: req.body.breed,
-    shelterId: req.shelter.id
+   // shelterId: req.boshelterId
   });
 
   newAnimal.save( (err) => {
+    console.log("presave");
     if (err) { return res.status(500).json(err); }
 
     return res.status(200).json(newAnimal);

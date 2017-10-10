@@ -7,10 +7,7 @@ const AnimalSchema = new Schema({
     required: true
   },
   image: String,
-  type: {
-    type: String,
-    required: true
-  },
+  type: String,
   age: Number,
   size: String,
   color: String,
