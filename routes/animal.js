@@ -19,6 +19,19 @@ router.get('/:id', (req, res, next) => {
   });
 });
 
+router.get('/by-shelter/:id', (req, res, next) => {
+  Animal.findOne({shelter: req.params.id}, (err, animal) => {
+    if (err) {
+      next(err);
+    }
+    if (!animal) {
+      return res.json(false);
+    }
+    return res.json(animal);
+  });
+});
+
+
 router.post('/', (req, res, next) => {
   const newAnimal = new Animal({
     name: req.body.name,
@@ -28,16 +41,7 @@ router.post('/', (req, res, next) => {
     color: req.body.color,
     sex: req.body.sex,
     breed: req.body.breed,
-    microchip: req.body.microchip,
-    vaccinated: req.body.vaccinated,
-    healthcare: req.body.healthcare,
-    energylevel: req.body.energylevel,
-    autonomy: req.body.autonomy,
-    sociable: req.body.sociable,
-    hates: req.body.hates,
-    loves: req.body.loves,
-    goingoutysociability: req.body.goingoutysociability,
-    alittleofmypast: req.body.alittleofmypast
+    shelterId: req.shelter.id
   });
 
   newAnimal.save( (err) => {

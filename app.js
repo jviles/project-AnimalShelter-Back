@@ -49,6 +49,7 @@ app.use('/auth', auth);
 
 // catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
+    console.log('ERRORMEU', req.method, req.path, err);
     res.status(404).json({error: 'Not found'});
 });
 

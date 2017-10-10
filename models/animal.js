@@ -16,16 +16,6 @@ const AnimalSchema = new Schema({
   color: String,
   sex: String,
   breed: String,
-  microchip: Boolean,
-  vaccinated: Boolean,
-  healthcare: Boolean,
-  energylevel: String,
-  autonomy: String,
-  sociable: String,
-  hates: String,
-  loves: String,
-  goingoutysociability: String,
-  alittleofmypast: String,
 });
 
 module.exports = mongoose.model('Animal', AnimalSchema);
