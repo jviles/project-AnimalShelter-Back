@@ -15,7 +15,12 @@ const ShelterSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'user'
-  }
+  },
+  Animals: [{
+    type: Schema.Types.ObjectId,
+    ref: 'animal'
+  }]
 });
+
 
 module.exports = mongoose.model('Shelter', ShelterSchema);

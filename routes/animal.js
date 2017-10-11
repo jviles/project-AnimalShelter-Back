@@ -42,7 +42,7 @@ router.post('/', (req, res, next) => {
     color: req.body.color,
     sex: req.body.sex,
     breed: req.body.breed,
-   // shelterId: req.boshelterId
+    shelterId: req.body.shelterId// fas el requeriment al body
   });
 
   newAnimal.save( (err) => {

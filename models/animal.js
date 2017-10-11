@@ -13,6 +13,10 @@ const AnimalSchema = new Schema({
   color: String,
   sex: String,
   breed: String,
+  shelterId: {
+    type: Schema.Types.ObjectId,
+    ref: 'shelter'
+  }
 });
 
 module.exports = mongoose.model('Animal', AnimalSchema);
