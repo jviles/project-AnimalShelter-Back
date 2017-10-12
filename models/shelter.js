@@ -18,7 +18,12 @@ const ShelterSchema = new Schema({
   },
   Animals: [{
     type: Schema.Types.ObjectId,
-    ref: 'animal'
+    ref: 'animal',
+    default:[]
+  }],
+  adopter: [{
+    type: Schema.Types.ObjectId,
+    ref: 'adopter'
   }]
 });
 

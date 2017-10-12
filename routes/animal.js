@@ -1,6 +1,7 @@
 const express    = require('express');
 const router     = express.Router();
 const Animal = require('../models/animal');
+const Shelter= require ('../models/shelter');
 
 router.get('/', (req, res, next) => {
   Animal.find({}, (err, animal) => {
@@ -20,20 +21,23 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.get('/by-shelter/:id', (req, res, next) => {
-  Animal.findOne({shelter: req.params.id}, (err, animal) => {
+  console.log ("inside");
+  Animal.find({shelterId: req.params.id}, (err, animal) => {
     if (err) {
       next(err);
     }
     if (!animal) {
       return res.json(false);
     }
+    console.log("animals",animal);
     return res.json(animal);
   });
 });
 
 
 router.post('/', (req, res, next) => {
-  console.log ("post1");
+  console.log (req.body.shelterId);
+  var shelterId=req.body.shelterId;
   const newAnimal = new Animal({
     name: req.body.name,
     image: req.body.image,
@@ -44,13 +48,21 @@ router.post('/', (req, res, next) => {
     breed: req.body.breed,
     shelterId: req.body.shelterId// fas el requeriment al body
   });
-
-  newAnimal.save( (err) => {
+  
+  newAnimal.save( (err,animal) => {
     console.log("presave");
+    
     if (err) { return res.status(500).json(err); }
-
+    Shelter.findByIdAndUpdate(shelterId, { $push: {Animals: animal._id}}, (err)=>{
+    if (err) {
+      console.log(err);
+      return res.send(500);
+    }
+  });
+      
     return res.status(200).json(newAnimal);
   });
 });
+
 
 module.exports = router;

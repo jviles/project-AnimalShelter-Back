@@ -14,6 +14,7 @@ const configure = require('./config/passport');
 const animal = require('./routes/animal');
 const shelter = require ('./routes/shelter');
 const auth = require('./routes/auth');
+const adopter = require('./routes/adopter');
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use(cookieParser());
 app.use('/animal', animal);
 app.use('/shelter',shelter);
 app.use('/auth', auth);
+app.use('/adopter', adopter);
 
 // catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
